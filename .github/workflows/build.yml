@@ -11,12 +11,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Clean old buildozer cache
+        run: |
+          rm -rf .buildozer
+          rm -rf bin
+
       - name: Build with Buildozer
         run: |
           docker run --rm \
             --entrypoint bash \
             -v ${{ github.workspace }}:/home/user/hostcwd \
-            -v buildozer-cache:/home/user/.buildozer \
             kivy/buildozer:latest \
             -c "yes | buildozer -v android debug"
 
