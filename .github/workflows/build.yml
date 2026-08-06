@@ -11,16 +11,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build with Buildozer Docker
+      - name: Build with Buildozer
         run: |
           docker run --rm \
             -v ${{ github.workspace }}:/home/user/hostcwd \
             -v buildozer-cache:/home/user/.buildozer \
+            -e BUILDOZER_WARN_ON_ROOT=0 \
             kivy/buildozer:latest \
-            android debug
+            bash -c "yes | buildozer android debug"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: shohreh-yoga-apk
           path: bin/*.apk
+          if-no-files-found: ignore
