@@ -1,0 +1,4 @@
+kivy
+arabic-reshaper
+python-bidi
+jdatetime

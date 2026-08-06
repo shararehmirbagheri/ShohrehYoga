@@ -1,0 +1,731 @@
+#:kivy 2.2.0
+
+ScreenManager:
+    HomeScreen:
+        name: "home"
+    StudentListScreen:
+        name: "students"
+    AttendanceScreen:
+        name: "attendance"
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 0
+
+        canvas.before:
+            Color:
+                rgba: 0.97, 0.96, 0.99, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: None
+            height: 72
+            padding: [22, 10, 18, 10]
+
+            canvas.before:
+                Color:
+                    rgba: 0.42, 0.16, 0.72, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "Dashboard"
+                font_name: "Persian"
+                font_size: 28
+                bold: True
+                color: 1, 1, 1, 1
+                halign: "left"
+                valign: "middle"
+                text_size: self.size
+
+            Widget:
+
+            Label:
+                text: "User: admin"
+                font_name: "Persian"
+                color: 1, 1, 1, 1
+                size_hint_x: None
+                width: 110
+
+        BoxLayout:
+            orientation: "vertical"
+            padding: [65, 22, 65, 45]
+            spacing: 18
+
+            Image:
+                source: "images/yoga_logo.png"
+                size_hint_y: None
+                height: 165
+                allow_stretch: True
+                keep_ratio: True
+
+            Label:
+                text: "Welcome to Shohreh Yoga Manager"
+                font_name: "Persian"
+                font_size: 24
+                bold: True
+                color: 0.20, 0.10, 0.28, 1
+                size_hint_y: None
+                height: 44
+
+            GridLayout:
+                cols: 2
+                spacing: 30
+                row_default_height: 150
+                row_force_default: True
+
+                Button:
+                    text: "Manage Students"
+                    font_name: "Persian"
+                    font_size: 22
+                    bold: True
+                    background_normal: ""
+                    background_color: 0.50, 0.20, 0.82, 1
+                    color: 1, 1, 1, 1
+                    on_release: root.manager.current = "students"
+
+                Button:
+                    text: "Attendance"
+                    font_name: "Persian"
+                    font_size: 22
+                    bold: True
+                    background_normal: ""
+                    background_color: 0.50, 0.20, 0.82, 1
+                    color: 1, 1, 1, 1
+                    on_release: root.manager.current = "attendance"
+
+<StudentListScreen>:
+    student_list: student_list
+    student_count: student_count
+    name_input: name_input
+    phone_input: phone_input
+    notes_input: notes_input
+    payment_date_input: payment_date_input
+    purchased_input: purchased_input
+    used_value: used_value
+    remaining_value: remaining_value
+    status_value: status_value
+    search_input: search_input
+
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        padding: [14, 12, 14, 14]
+
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.93, 0.98, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: None
+            height: 64
+            padding: [14, 7, 12, 7]
+            spacing: 12
+
+            canvas.before:
+                Color:
+                    rgba: 0.42, 0.16, 0.72, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            Image:
+                source: "images/yoga_logo.png"
+                size_hint_x: None
+                width: 54
+                allow_stretch: True
+                keep_ratio: True
+
+            Label:
+                text: "Manage Students"
+                font_name: "Persian"
+                font_size: 24
+                bold: True
+                color: 1, 1, 1, 1
+                halign: "left"
+                valign: "middle"
+                text_size: self.size
+
+            Widget:
+
+            Button:
+                text: "Back"
+                font_name: "Persian"
+                size_hint_x: None
+                width: 88
+                background_normal: ""
+                background_color: 0.62, 0.42, 0.78, 1
+                color: 1, 1, 1, 1
+                on_release: root.manager.current = "home"
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 220
+            padding: [14, 12, 14, 12]
+            spacing: 10
+
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [12]
+                Color:
+                    rgba: 0.80, 0.73, 0.89, 1
+                Line:
+                    rounded_rectangle: [self.x, self.y, self.width, self.height, 12]
+                    width: 1
+
+            GridLayout:
+                cols: 6
+                size_hint_y: None
+                height: 42
+                spacing: 8
+
+                Label:
+                    text: "Name"
+                    font_name: "Persian"
+                    color: 0.24, 0.12, 0.34, 1
+
+                PersianTextInput:
+                    id: name_input
+                    font_name: "Persian"
+                    font_size: 16
+                    halign: "right"
+                    multiline: False
+                    background_color: 0.98, 0.97, 1, 1
+                    foreground_color: 0.12, 0.08, 0.18, 1
+
+                Label:
+                    text: "Phone"
+                    font_name: "Persian"
+                    color: 0.24, 0.12, 0.34, 1
+
+                TextInput:
+                    id: phone_input
+                    font_name: "Persian"
+                    font_size: 15
+                    multiline: False
+                    background_color: 0.98, 0.97, 1, 1
+                    foreground_color: 0.12, 0.08, 0.18, 1
+
+                Label:
+                    text: "Payment Date"
+                    font_name: "Persian"
+                    color: 0.24, 0.12, 0.34, 1
+
+                BoxLayout:
+                    spacing: 5
+
+                    TextInput:
+                        id: payment_date_input
+                        hint_text: "تاریخ پرداخت"
+                        font_name: "Persian"
+                        multiline: False
+                        readonly: True
+                        background_color: 0.98, 0.97, 1, 1
+                        foreground_color: 0.12, 0.08, 0.18, 1
+
+                    Button:
+                        text: "📅"
+                        font_name: "Persian"
+                        size_hint_x: None
+                        width: 48
+                        background_normal: ""
+                        background_color: 0.50, 0.20, 0.82, 1
+                        color: 1, 1, 1, 1
+                        on_release: root.open_payment_calendar()
+
+            GridLayout:
+                cols: 6
+                size_hint_y: None
+                height: 42
+                spacing: 8
+
+                Label:
+                    text: "Purchased"
+                    font_name: "Persian"
+                    color: 0.24, 0.12, 0.34, 1
+
+                TextInput:
+                    id: purchased_input
+                    hint_text: "12"
+                    font_name: "Persian"
+                    input_filter: "int"
+                    multiline: False
+                    background_color: 0.98, 0.97, 1, 1
+                    foreground_color: 0.12, 0.08, 0.18, 1
+
+                Label:
+                    text: "Notes"
+                    font_name: "Persian"
+                    color: 0.24, 0.12, 0.34, 1
+
+                PersianTextInput:
+                    id: notes_input
+                    font_name: "Persian"
+                    font_size: 16
+                    halign: "right"
+                    multiline: False
+                    background_color: 0.98, 0.97, 1, 1
+                    foreground_color: 0.12, 0.08, 0.18, 1
+
+                Label:
+                    text: "Status"
+                    font_name: "Persian"
+                    color: 0.24, 0.12, 0.34, 1
+
+                Label:
+                    id: status_value
+                    text: "Unpaid"
+                    font_name: "Persian"
+                    bold: True
+                    color: 0.42, 0.16, 0.72, 1
+
+            GridLayout:
+                cols: 6
+                size_hint_y: None
+                height: 36
+                spacing: 8
+
+                Label:
+                    text: "Used"
+                    font_name: "Persian"
+                    color: 0.24, 0.12, 0.34, 1
+
+                Label:
+                    id: used_value
+                    text: "0"
+                    font_name: "Persian"
+                    bold: True
+                    color: 0.24, 0.12, 0.34, 1
+
+                Label:
+                    text: "Remaining"
+                    font_name: "Persian"
+                    color: 0.24, 0.12, 0.34, 1
+
+                Label:
+                    id: remaining_value
+                    text: "0"
+                    font_name: "Persian"
+                    bold: True
+                    color: 0.24, 0.12, 0.34, 1
+
+                Widget:
+                Widget:
+
+            BoxLayout:
+                size_hint_y: None
+                height: 38
+                spacing: 10
+
+                Widget:
+
+                Button:
+                    text: "Add"
+                    font_name: "Persian"
+                    size_hint_x: None
+                    width: 110
+                    background_normal: ""
+                    background_color: 0.36, 0.64, 0.35, 1
+                    color: 1, 1, 1, 1
+                    on_release: root.add_student()
+
+                Button:
+                    text: "Update"
+                    font_name: "Persian"
+                    size_hint_x: None
+                    width: 110
+                    background_normal: ""
+                    background_color: 0.50, 0.20, 0.82, 1
+                    color: 1, 1, 1, 1
+                    on_release: root.update_student()
+
+                Button:
+                    text: "Delete"
+                    font_name: "Persian"
+                    size_hint_x: None
+                    width: 110
+                    background_normal: ""
+                    background_color: 0.86, 0.22, 0.26, 1
+                    color: 1, 1, 1, 1
+                    on_release: root.delete_student()
+
+                Button:
+                    text: "Clear"
+                    font_name: "Persian"
+                    size_hint_x: None
+                    width: 110
+                    background_normal: ""
+                    background_color: 0.62, 0.42, 0.78, 1
+                    color: 1, 1, 1, 1
+                    on_release: root.clear_form()
+
+        BoxLayout:
+            size_hint_y: None
+            height: 42
+            spacing: 8
+
+            PersianTextInput:
+                id: search_input
+                hint_text: "Search by ID, name, or phone"
+                font_name: "Persian"
+                font_size: 16
+                halign: "right"
+                multiline: False
+                background_color: 1, 1, 1, 1
+                foreground_color: 0.12, 0.08, 0.18, 1
+                on_logical_text: root.schedule_search(self.logical_text)
+
+            Label:
+                text: "Filter"
+                font_name: "Persian"
+                color: 0.24, 0.12, 0.34, 1
+                size_hint_x: None
+                width: 55
+
+            Spinner:
+                text: "All"
+                values: ["All", "Active", "Renew Soon", "Expired", "Unpaid"]
+                font_name: "Persian"
+                size_hint_x: None
+                width: 160
+                background_normal: ""
+                background_down: ""
+                background_color: 1, 1, 1, 1
+                color: 0.20, 0.10, 0.28, 1
+                on_text: root.set_filter(self.text)
+
+            Label:
+                id: student_count
+                text: "Students: 0"
+                font_name: "Persian"
+                color: 0.24, 0.12, 0.34, 1
+                size_hint_x: None
+                width: 120
+
+        BoxLayout:
+            orientation: "vertical"
+
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                size_hint_y: None
+                height: 44
+                spacing: 0
+
+                Button:
+                    text: "ID"
+                    size_hint_x: 0.07
+                    on_release: root.sort_students("id")
+                Button:
+                    text: "Name"
+                    size_hint_x: 0.25
+                    on_release: root.sort_students("name")
+                Button:
+                    text: "Phone"
+                    size_hint_x: 0.17
+                    on_release: root.sort_students("phone")
+                Button:
+                    text: "Purchased"
+                    size_hint_x: 0.13
+                    on_release: root.sort_students("sessions_purchased")
+                Button:
+                    text: "Used"
+                    size_hint_x: 0.11
+                    on_release: root.sort_students("sessions_used")
+                Button:
+                    text: "Remaining"
+                    size_hint_x: 0.13
+                    on_release: root.sort_students("remaining_sessions")
+                Button:
+                    text: "Status"
+                    size_hint_x: 0.14
+                    on_release: root.sort_students("status")
+
+            ScrollView:
+                do_scroll_x: False
+                bar_width: 10
+
+                BoxLayout:
+                    id: student_list
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+
+<AttendanceScreen>:
+    attendance_list: attendance_list
+    selected_date_input: selected_date_input
+    present_count_label: present_count_label
+    absent_count_label: absent_count_label
+    total_count_label: total_count_label
+    export_message: export_message
+
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        padding: [14, 12, 14, 14]
+
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.93, 0.98, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        BoxLayout:
+            size_hint_y: None
+            height: 64
+            padding: [14, 7, 12, 7]
+            spacing: 12
+
+            canvas.before:
+                Color:
+                    rgba: 0.42, 0.16, 0.72, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            Image:
+                source: "images/yoga_logo.png"
+                size_hint_x: None
+                width: 54
+                allow_stretch: True
+                keep_ratio: True
+
+            Label:
+                text: "Attendance"
+                font_name: "Persian"
+                font_size: 24
+                bold: True
+                color: 1, 1, 1, 1
+                halign: "left"
+                valign: "middle"
+                text_size: self.size
+
+            Widget:
+
+            Button:
+                text: "Back"
+                font_name: "Persian"
+                size_hint_x: None
+                width: 88
+                background_normal: ""
+                background_color: 0.62, 0.42, 0.78, 1
+                color: 1, 1, 1, 1
+                on_release: root.manager.current = "home"
+
+        BoxLayout:
+            size_hint_y: None
+            height: 58
+            padding: [14, 8, 14, 8]
+            spacing: 10
+
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            Label:
+                text: "Attendance Date"
+                font_name: "Persian"
+                color: 0.24, 0.12, 0.34, 1
+                size_hint_x: None
+                width: 130
+
+            TextInput:
+                id: selected_date_input
+                hint_text: "انتخاب تاریخ"
+                font_name: "Persian"
+                multiline: False
+                readonly: True
+                size_hint_x: None
+                width: 180
+                background_color: 0.98, 0.97, 1, 1
+                foreground_color: 0.12, 0.08, 0.18, 1
+
+            Button:
+                text: "تقویم فارسی"
+                font_name: "Persian"
+                size_hint_x: None
+                width: 120
+                background_normal: ""
+                background_color: 0.50, 0.20, 0.82, 1
+                color: 1, 1, 1, 1
+                on_release: root.open_calendar()
+
+            Button:
+                text: "Today"
+                font_name: "Persian"
+                size_hint_x: None
+                width: 90
+                background_normal: ""
+                background_color: 0.62, 0.42, 0.78, 1
+                color: 1, 1, 1, 1
+                on_release: root.use_today()
+
+            Widget:
+
+            Label:
+                id: total_count_label
+                text: "Students: 0"
+                font_name: "Persian"
+                color: 0.24, 0.12, 0.34, 1
+                size_hint_x: None
+                width: 110
+
+            Label:
+                id: present_count_label
+                text: "Present: 0"
+                font_name: "Persian"
+                color: 0.18, 0.45, 0.20, 1
+                size_hint_x: None
+                width: 100
+
+            Label:
+                id: absent_count_label
+                text: "Absent: 0"
+                font_name: "Persian"
+                color: 0.72, 0.18, 0.20, 1
+                size_hint_x: None
+                width: 100
+
+        BoxLayout:
+            size_hint_y: None
+            height: 42
+            spacing: 8
+
+            Button:
+                text: "Select All"
+                font_name: "Persian"
+                background_normal: ""
+                background_color: 0.36, 0.64, 0.35, 1
+                color: 1, 1, 1, 1
+                on_release: root.select_all()
+
+            Button:
+                text: "Clear All"
+                font_name: "Persian"
+                background_normal: ""
+                background_color: 0.62, 0.42, 0.78, 1
+                color: 1, 1, 1, 1
+                on_release: root.clear_all()
+
+            Button:
+                text: "Save Attendance"
+                font_name: "Persian"
+                bold: True
+                background_normal: ""
+                background_color: 0.50, 0.20, 0.82, 1
+                color: 1, 1, 1, 1
+                on_release: root.save_attendance()
+
+        BoxLayout:
+            orientation: "vertical"
+
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                size_hint_y: None
+                height: 44
+                spacing: 0
+
+                Button:
+                    text: "Present"
+                    font_name: "Persian"
+                    bold: True
+                    size_hint_x: 0.12
+                    background_normal: ""
+                    background_color: 0.42, 0.16, 0.72, 1
+                    color: 1, 1, 1, 1
+                    on_release: root.sort_attendance("present")
+
+                Button:
+                    text: "Student Name"
+                    font_name: "Persian"
+                    bold: True
+                    size_hint_x: 0.63
+                    background_normal: ""
+                    background_color: 0.42, 0.16, 0.72, 1
+                    color: 1, 1, 1, 1
+                    on_release: root.sort_attendance("name")
+
+                Button:
+                    text: "Status"
+                    font_name: "Persian"
+                    bold: True
+                    size_hint_x: 0.25
+                    background_normal: ""
+                    background_color: 0.42, 0.16, 0.72, 1
+                    color: 1, 1, 1, 1
+                    on_release: root.sort_attendance("status")
+
+            ScrollView:
+                do_scroll_x: False
+                bar_width: 10
+
+                BoxLayout:
+                    id: attendance_list
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+
+        BoxLayout:
+            size_hint_y: None
+            height: 46
+            spacing: 8
+
+            Button:
+                text: "Export Attendance"
+                font_name: "Persian"
+                background_normal: ""
+                background_color: 0.50, 0.20, 0.82, 1
+                color: 1, 1, 1, 1
+                on_release: root.export_attendance()
+
+            Button:
+                text: "Export Student Summary"
+                font_name: "Persian"
+                background_normal: ""
+                background_color: 0.50, 0.20, 0.82, 1
+                color: 1, 1, 1, 1
+                on_release: root.export_student_summary()
+
+            Button:
+                text: "Backup Database"
+                font_name: "Persian"
+                background_normal: ""
+                background_color: 0.62, 0.42, 0.78, 1
+                color: 1, 1, 1, 1
+                on_release: root.backup_database()
+
+            Label:
+                id: export_message
+                text: ""
+                font_name: "Persian"
+                color: 0.24, 0.12, 0.34, 1

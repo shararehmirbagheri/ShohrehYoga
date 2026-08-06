@@ -1,0 +1,14 @@
+prefix=/home/sharareh/ShohrehYoga/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/freetype/arm64-v8a__ndk_target_24/freetype
+exec_prefix=/home/sharareh/ShohrehYoga/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/freetype/arm64-v8a__ndk_target_24/freetype
+libdir=/home/sharareh/ShohrehYoga/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/freetype/arm64-v8a__ndk_target_24/freetype/lib
+includedir=/home/sharareh/ShohrehYoga/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/freetype/arm64-v8a__ndk_target_24/freetype/include
+
+Name: FreeType 2
+URL: https://freetype.org
+Description: A free, high-quality, and portable font engine.
+Version: 26.4.20
+Requires: 
+Requires.private: zlib
+Libs: -L/home/sharareh/ShohrehYoga/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/freetype/arm64-v8a__ndk_target_24/freetype/lib -lfreetype
+Libs.private: 
+Cflags: -I${includedir}/freetype2
