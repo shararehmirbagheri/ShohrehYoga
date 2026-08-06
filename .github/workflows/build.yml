@@ -5,24 +5,29 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Clean old buildozer cache
+      - name: Clean previous builds
         run: |
           rm -rf .buildozer
           rm -rf bin
 
-      - name: Build with Buildozer
+      - name: Build APK with Buildozer
         run: |
           docker run --rm \
             --entrypoint bash \
             -v ${{ github.workspace }}:/home/user/hostcwd \
             kivy/buildozer:latest \
-            -c "yes | buildozer -v android debug"
+            -c "
+              cd /home/user/hostcwd
+              # Force stable p4a
+              sed -i 's/p4a.branch.*/p4a.branch = master/' buildozer.spec || echo 'p4a.branch = master' >> buildozer.spec
+              yes | buildozer -v android debug
+            "
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
