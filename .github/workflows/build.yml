@@ -6,17 +6,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: kivy/buildozer:latest
-      options: --user root
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build APK
+      - name: Build with Buildozer Docker
         run: |
-          buildozer -v android debug
+          docker run --rm \
+            -v ${{ github.workspace }}:/home/user/hostcwd \
+            -v buildozer-cache:/home/user/.buildozer \
+            kivy/buildozer:latest \
+            android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
