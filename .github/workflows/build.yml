@@ -11,12 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Clean previous builds
-        run: |
-          rm -rf .buildozer
-          rm -rf bin
-
-      - name: Build APK with Buildozer
+      - name: Build APK
         run: |
           docker run --rm \
             --entrypoint bash \
@@ -24,8 +19,8 @@ jobs:
             kivy/buildozer:latest \
             -c "
               cd /home/user/hostcwd
-              # Force stable p4a
-              sed -i 's/p4a.branch.*/p4a.branch = master/' buildozer.spec || echo 'p4a.branch = master' >> buildozer.spec
+              # Force stable branch
+              sed -i 's/^p4a.branch.*/p4a.branch = master/' buildozer.spec || echo 'p4a.branch = master' >> buildozer.spec
               yes | buildozer -v android debug
             "
 
