@@ -1,9 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/sharareh/ShohrehYoga/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_24/jpeg/cmake_install.cmake",
-		"/home/sharareh/ShohrehYoga/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_24/jpeg/simd/cmake_install.cmake",
-		"/home/sharareh/ShohrehYoga/.buildozer/android/platform/build-arm64-v8a_armeabi-v7a/build/other_builds/jpeg/armeabi-v7a__ndk_target_24/jpeg/md5/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
